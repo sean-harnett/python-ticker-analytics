@@ -1,7 +1,7 @@
 import pandas as pd
 import mplfinance as mplf
 
-from utils import create_file_name_from_list
+from src.utils.file_utils import create_file_name_from_list
 import matplotlib.ticker as ticker
 
 

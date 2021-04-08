@@ -39,6 +39,15 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="build.tools" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Python_GitHub\python-ticker-analytics\src" />
+      <recent name="C:\Users\User\Python_GitHub\python-ticker-analytics\propertiesFiles" />
+      <recent name="C:\Users\User\Python_GitHub\python-ticker-analytics\graphing" />
+      <recent name="C:\Users\User\Python_GitHub\python-ticker-analytics\tick_analysis" />
+      <recent name="C:\Users\User\Python_GitHub\python-ticker-analytics\utils" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="python-ticker-analytics" />
@@ -95,6 +104,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/python_ticker_analytics$main.coverage" NAME="main Coverage Results" MODIFIED="1617897090127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python_ticker_analytics$main.coverage" NAME="main Coverage Results" MODIFIED="1617897791915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

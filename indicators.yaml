@@ -1,0 +1,22 @@
+
+
+indicators:
+  EMA:
+    use: True
+    period: 2
+    color: green
+
+  ATR:
+    use: False
+    period: -1
+    color: blue
+
+  MACD:
+    use: False
+    period: -1
+    color: red
+
+  MA:
+    use: False
+    period: -1
+    color: yellow

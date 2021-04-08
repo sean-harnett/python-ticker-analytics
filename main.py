@@ -3,24 +3,23 @@ from testData import generate_one_month_test_MSFT_data, write_test_to_csv
 import indicators as ind
 import matplotlib.pyplot as plt
 
+import utils as ut
+
 import pandas as pd
 
-## data_frame = generate_one_month_test_MSFT_data()
+# data_frame = generate_one_month_test_MSFT_data()
 
-## write_test_to_csv('MSFT', data_frame)
+# write_test_to_csv('MSFT', data_frame)
 
 
-core_data_frame = g.read_csv_into_data_frame('MSFT') ## get data_frame from file 'MSFT'
+core_data_frame = g.read_csv_into_data_frame('MSFT') # get data_frame from file 'MSFT'
 
-indicator_df = pd.DataFrame()
 
-indicator_df['EMA'] = ind.calculate_EMA_from_data_frame(core_data_frame, 2)
+indicators_dict = ut.create_indicators_from_yaml('indicators.yaml')
 
-indicator_df['ATR'] = ind.calculate_ATR_from_data_frame(core_data_frame, 2)
+indicator_df, color_dict = ind.calculate_indicators(indicator_dictionary=indicators_dict, source_data_frame=core_data_frame)
 
-color_dictionary = {'EMA':'orange','ATR':'red'}
-
-g.plot_indicator_graph_with_candlesticks(core_data_frame, indicator_df, 'MSFT', color_dictionary)
+g.plot_indicator_graph_with_candlesticks(core_data_frame, indicator_df, 'MSFT', color_dict, saveorshow=True)
 
 
 

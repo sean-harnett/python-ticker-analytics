@@ -10,7 +10,11 @@ from src.utils.file_utils import create_file_name_from_list
 
 
 def read_csv_into_data_frame(file_name):
-    df = pd.read_csv(file_name)
+    try:
+        df = pd.read_csv(file_name)
+    except OSError as e:
+        raise
+
     df = df.set_index(pd.to_datetime(df['Date']))
     return df
 

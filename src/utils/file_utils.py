@@ -29,7 +29,7 @@ def create_indicators_from_yaml(file_name: str):
                 raise OSError from err
 
     except OSError as exc:
-        raise OSError from exc
+        raise
 
     return items
 

@@ -3,6 +3,7 @@ import click
 import src.graphing.ticker_graphs as t_g
 import src.tick_analysis.indicator_calculations as ind_c
 import src.utils.file_utils as f_uts
+from pandas import DataFrame
 
 
 @click.command()
@@ -15,9 +16,22 @@ import src.utils.file_utils as f_uts
 @click.option('--save_directory', prompt='Where do you want to save the output?', required=True,
               help='Path of the directory where you want to save the outputted graph.')
 def cli(ticker_csv_file: str, indicators_yaml_file: str, ticker_name: str, save_directory: str):
-    core_data_frame = t_g.read_csv_into_data_frame(ticker_csv_file)
-    indicators: dict
-    indicators = f_uts.create_indicators_from_yaml(indicators_yaml_file)
+    core_data_frame = DataFrame()
+    try:
+        core_data_frame = t_g.read_csv_into_data_frame(ticker_csv_file)
+    except OSError as e:
+        error_msg = '\n Error parsing csv file: ' + e.strerror + '\n'
+        click.secho(error_msg,fg='red')
+        click.echo('Exiting script...')
+        exit(1)
+    indicators = dict()
+    try:
+        indicators = f_uts.create_indicators_from_yaml(indicators_yaml_file)
+    except OSError as e:
+        error_msg = '\n Error parsing yaml file: ' + e.strerror + '\n'
+        click.secho(error_msg, fg='red')
+        click.echo('Exiting script...')
+        exit(1)
     indicator_data_frame, colors_dict = ind_c.calculate_indicators(indicators, core_data_frame)
     t_g.plot_indicator_graph_with_candlesticks(candlestick_data_frame=core_data_frame,
                                                indicators_data_frame=indicator_data_frame,

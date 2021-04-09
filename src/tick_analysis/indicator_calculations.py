@@ -19,11 +19,6 @@ def calculate_MA_from_data_frame(source_data_frame):
 def calculate_MACD_from_data_frame(source_data_frame):
     return ta.macd(source_data_frame['Close'])
 
-
-
-
-
-
 # Indicator helper Functions:
 
 """ return a pandas.DataFrame() of a variable number of indicators based off of current dictionary boolean values, and a dictionary of colors for those indicators 

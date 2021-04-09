@@ -1,9 +1,8 @@
-import pandas as pd
+import matplotlib.ticker as ticker
 import mplfinance as mplf
+import pandas as pd
 
 from src.utils.file_utils import create_file_name_from_list
-import matplotlib.ticker as ticker
-
 
 #  TODO: change ticker x axis, and y axis frequency
 
@@ -21,23 +20,27 @@ def read_csv_into_data_frame(file_name):
 
 def plot_base_graph_candlestick_to_png(data_frame, stock_name):
     mplf.plot(data_frame, type='candle', style='yahoo',
-              savefig=(stock_name+'candlestick.png'))
+              savefig=(stock_name + 'candlestick.png'))
 
 
 """ Plot a candlestick, and various indicators all on one graph, and save it to a png file. """
 
 
-def plot_indicator_graph_with_candlesticks(candlestick_data_frame: pd.DataFrame, indicators_data_frame: pd.DataFrame, stock_name: str, color_dictionary: dict, saveorshow: bool):
-
+def plot_indicator_graph_with_candlesticks(candlestick_data_frame: pd.DataFrame, indicators_data_frame: pd.DataFrame,
+                                           stock_name: str, color_dictionary: dict, saveorshow: bool,
+                                           save_location: str):
     # Get a list of the indicators that have been plotted
     indicators_used = indicators_data_frame.columns.tolist()
 
+    file_name = save_location
     #  create a new file name based off of the stock_name
-    file_name = create_file_name_from_list(indicators_used, stock_name) + '.png'
+    file_name += create_file_name_from_list(indicators_used, stock_name) + '.png'
 
     ads = create_indicator_subplots(indicators_data_frame, color_dictionary)
     fig, axes = mplf.plot(candlestick_data_frame, style='yahoo', type='candle', addplot=ads, returnfig=True)
     axes[0].xaxis.set_major_locator(ticker.MultipleLocator(2))
+    axes[0].set_title(''.join(indicators_used))
+    fig.suptitle(stock_name)
     # Either save the fig, or show it
     if saveorshow:
         fig.savefig(file_name)

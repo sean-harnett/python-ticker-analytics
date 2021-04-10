@@ -1,0 +1,7 @@
+pandas
+pandas_ta
+click
+mplfinance
+matplotlib
+pyyaml
+colorama

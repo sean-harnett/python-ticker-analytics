@@ -17,7 +17,6 @@ def create_file_name_from_list(str_list, ticker_name):
 def create_indicators_from_yaml(file_name: str):
     items = {}
     try:
-
         with open(file_name, 'r') as file:
             try:
                 indicators = yaml.full_load(file)

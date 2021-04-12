@@ -7,8 +7,8 @@ indicators:
     color: green
 
   ATR:
-    use: False
-    period: -1
+    use: True
+    period: 2
     color: blue
 
   MACD:

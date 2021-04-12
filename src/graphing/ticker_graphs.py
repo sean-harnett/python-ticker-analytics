@@ -19,6 +19,21 @@ def read_csv_into_data_frame(file_name):
     return df
 
 
+"""Read a list of files into seperate data frames."""
+
+
+def read_bulk_files_to_data_frames(files: list):
+    data_frames = list()
+    for file in files:
+        try:
+            df = pd.read_csv(file)
+            df = df.set_index(pd.to_datetime(df['Date']))
+            data_frames.append(df)
+        except OSError as e:
+            raise
+    return data_frames
+
+
 """ Plot a candlestick, and various indicators all on one graph, and save it to a png file. """
 
 
@@ -29,16 +44,21 @@ def plot_indicator_graph_with_candlesticks(candlestick_data_frame: pd.DataFrame,
     indicators_used = indicators_data_frame.columns.tolist()
 
     file_name = save_location
-    #  create a new file name based off of the stock_name
+    if file_name[-1] != '/' and file_name[-1] != '\\': # check for directory append
+        file_name += '/'
+
+    #  Create a new file name based off of the stock_name
     file_name += create_file_name_from_list(indicators_used, stock_name) + '.png'
 
     additional_plots = create_indicator_subplots(indicators_data_frame, color_dictionary)
-    figure, axes = mplf.plot(candlestick_data_frame, style='yahoo', type='candle', addplot=additional_plots, returnfig=True)
+    figure, axes = mplf.plot(candlestick_data_frame, style='yahoo', type='candle', addplot=additional_plots,
+                             returnfig=True)
     axes[0].xaxis.set_major_locator(ticker.MultipleLocator(2))
-    axes[0].set_title(''.join(indicators_used))
+    axes[0].set_title(' '.join(indicators_used))
     figure.suptitle(stock_name)
     # Either save the figure, or show it
     if saveorshow:
+        print(file_name)
         figure.savefig(file_name)
     else:
         figure.show()

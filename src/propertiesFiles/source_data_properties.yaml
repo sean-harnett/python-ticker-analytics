@@ -1,0 +1,5 @@
+# This properties file is an example of creating a yaml file for multiple ticker csv files.
+
+file_properties:
+  csv_source_directory: src/ticker_example_csv/
+  indicator_yaml_location: src/propertiesFiles/indicatorProperties.yaml

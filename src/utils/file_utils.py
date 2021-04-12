@@ -1,3 +1,5 @@
+import os
+
 import yaml
 
 """ Given a list of strings, append them to create one string"""
@@ -9,24 +11,42 @@ def create_file_name_from_list(str_list, ticker_name):
     return ticker_name
 
 
-""" returns a dictionary of indicators from a yaml file.
+""" Function to construct a list of file names to parse from a directory. """
+
+
+def parse_directory_file_names(directory_path: str):
+    file_paths = list()
+    file_names = list()
+    for dirpath, dirnames, files in os.walk(directory_path):
+        if len(dirnames) > 0:
+            for dirname in dirnames:
+                for file in files:
+                    file_paths.append(dirpath + dirname + file)
+                    file_names.append(file)
+        else:
+            for file in files:
+                file_paths.append((dirpath + file))
+                file_names.append(file)
+
+    return file_paths, file_names
+
+
+""" returns a list of dictionaries from a yaml file.
  Throws OSError when trying to open/read the file
   Or Throws a YAMLError when parsing with pyyaml"""
 
 
-def create_indicators_from_yaml(file_name: str):
-    items = {}
+def parse_yaml(file_path: str):
+    new_dict_list = list()
     try:
-        with open(file_name, 'r') as file:
+        with open(file_path, 'r') as file:
             try:
-                indicators = yaml.full_load(file)
-                #  add the indicators to a dictionary:
-                for indicator, use in indicators.items():
-                    items[indicator] = use
-            except yaml.YAMLError as err:
+                yml = yaml.full_load(file)
+                for obj, ob1 in yml.items():
+                    new_dict_list.append({obj: ob1})
+            except yaml.YAMLError:
                 raise
-
-    except OSError as exc:
+    except OSError:
         raise
 
-    return items
+    return new_dict_list

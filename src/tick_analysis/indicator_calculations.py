@@ -38,16 +38,16 @@ def calculate_indicators(indicator_dictionary, source_data_frame):
                                                                          'period'])
         color_dict['EMA'] = indicator_dictionary['indicators']['EMA']['color']
     if indicator_dictionary['indicators']['ATR']['use']:
-        calculated_indicators['ATR'] = calculate_EMA_from_data_frame(source_data_frame,
+        calculated_indicators['ATR'] = calculate_ATR_from_data_frame(source_data_frame,
                                                                      indicator_dictionary['indicators']['ATR'][
                                                                          'period'])
         color_dict['ATR'] = indicator_dictionary['indicators']['ATR']['color']
     if indicator_dictionary['indicators']['MA']['use']:
-        calculated_indicators['MA'] = calculate_EMA_from_data_frame(source_data_frame,
+        calculated_indicators['MA'] = calculate_MA_from_data_frame(source_data_frame,
                                                                     indicator_dictionary['indicators']['MA']['period'])
         color_dict['MA'] = indicator_dictionary['indicators']['MA']['color']
     if indicator_dictionary['indicators']['MACD']['use']:
-        calculated_indicators['MACD'] = calculate_EMA_from_data_frame(source_data_frame,
+        calculated_indicators['MACD'] = calculate_MACD_from_data_frame(source_data_frame,
                                                                       indicator_dictionary['indicators']['MACD'][
                                                                           'period'])
         color_dict['MACD'] = indicator_dictionary['indicators']['MACD']['color']

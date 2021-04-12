@@ -1,8 +1,4 @@
-
-from src.cli import cli_commands
+from src.cli.cli_commands import cli
 
 if __name__ == '__main__':
-    cli_commands.cli()
-
-
-
+    cli()
